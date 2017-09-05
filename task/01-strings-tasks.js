@@ -8,7 +8,6 @@
  ********************************************************************************************/
 
 
-
 /**
  * Returns the result of concatenation of two strings.
  *
@@ -69,7 +68,7 @@ function getStringFromTemplate(firstName, lastName) {
  *   'Hello, Chuck Norris!' => 'Chuck Norris'
  */
 function extractNameFromTemplate(value) {
-    return value.substring(value.indexOf(",")+2,value.length-1);
+    return value.substring(value.indexOf(",") + 2, value.length - 1);
 }
 
 
@@ -119,7 +118,7 @@ function repeatString(value, count) {
 
 /**
  * Remove the first occurrence of string inside another string
- * 
+ *
  * @param {string} str
  * @param {string} value
  * @return {string}
@@ -130,7 +129,7 @@ function repeatString(value, count) {
  *   'ABABAB','BA' => 'ABAB'
  */
 function removeFirstOccurrences(str, value) {
-    return str.replace(value,"");
+    return str.replace(value, "");
 }
 
 /**
@@ -145,8 +144,8 @@ function removeFirstOccurrences(str, value) {
  *   '<a>' => 'a'
  */
 function unbracketTag(str) {
-    str = str.replace("<","");
-    return str.replace(">","");
+    str = str.replace("<", "");
+    return str.replace(">", "");
 }
 
 
@@ -203,21 +202,21 @@ function extractEmails(str) {
  */
 function getRectangleString(width, height) {
     let rectangle = '';
-    rectangle +='┌';
-    for(let i = 0; i < width-2; i++){
-        rectangle+='─'
+    rectangle += '┌';
+    for (let i = 0; i < width - 2; i++) {
+        rectangle += '─'
     }
-    rectangle +='┐\n';
-    for (let i = 0; i < height-2; i++){
-        rectangle+='│';
-        for(let i = 0; i < width-2; i++){
-            rectangle+=' '
+    rectangle += '┐\n';
+    for (let i = 0; i < height - 2; i++) {
+        rectangle += '│';
+        for (let i = 0; i < width - 2; i++) {
+            rectangle += ' '
         }
-        rectangle+='│\n';
+        rectangle += '│\n';
     }
     rectangle += '└';
-    for(let i = 0; i < width-2; i++){
-        rectangle+='─'
+    for (let i = 0; i < width - 2; i++) {
+        rectangle += '─'
     }
     rectangle += '┘\n'
     return rectangle;
@@ -241,19 +240,19 @@ function getRectangleString(width, height) {
  */
 function encodeToRot13(str) {
     let result = "";
-    for (let i = 0; i < str.length; i++){
+    for (let i = 0; i < str.length; i++) {
         let code = str.charCodeAt(i);
-        if(str.charAt(i) === ' '){
+        if (str.charAt(i) === ' ') {
             result += ' ';
-        }else if(code > 122 || code < 65){
+        } else if (code > 122 || code < 65) {
             result += str.charAt(i);
-        }else if(97 <= code) {
+        } else if (97 <= code) {
             if (code <= 109) {
                 result += String.fromCharCode(code + 13);
             } else {
                 result += String.fromCharCode(code - 13);
             }
-        }else {
+        } else {
             if (code <= 77) {
                 result += String.fromCharCode(code + 13);
             } else {
@@ -278,29 +277,29 @@ function encodeToRot13(str) {
  *   isString(new String('test')) => true
  */
 function isString(value) {
-    return  Object.prototype.toString.call(value) === "[object String]"
+    return Object.prototype.toString.call(value) === "[object String]"
 }
 
 
 /**
  * Returns playid card id.
- * 
+ *
  * Playing cards inittial deck inclides the cards in the following order:
- * 
+ *
  *  'A♣','2♣','3♣','4♣','5♣','6♣','7♣','8♣','9♣','10♣','J♣','Q♣','K♣',
  *  'A♦','2♦','3♦','4♦','5♦','6♦','7♦','8♦','9♦','10♦','J♦','Q♦','K♦',
  *  'A♥','2♥','3♥','4♥','5♥','6♥','7♥','8♥','9♥','10♥','J♥','Q♥','K♥',
  *  'A♠','2♠','3♠','4♠','5♠','6♠','7♠','8♠','9♠','10♠','J♠','Q♠','K♠'
- * 
+ *
  * (see https://en.wikipedia.org/wiki/Standard_52-card_deck)
  * Function returns the zero-based index of specified card in the initial deck above.
- * 
+ *
  * @param {string} value
  * @return {number}
  *
  * @example
  *   'A♣' => 0
- *   '2♣' => 1 
+ *   '2♣' => 1
  *   '3♣' => 2
  *     ...
  *   'Q♠' => 50
@@ -308,26 +307,26 @@ function isString(value) {
  */
 function getCardId(value) {
     let suit, dignity;
-    if(value.length < 3){
+    if (value.length < 3) {
         suit = value.charAt(1);
         dignity = value.charAt(0);
-    }else {
+    } else {
         suit = value.charAt(2);
-        dignity = value.charAt(0)+value.charAt(1);
+        dignity = value.charAt(0) + value.charAt(1);
     }
-    switch (suit){
+    switch (suit) {
         case '♣':
             return recognizeLetter(dignity);
         case '♦':
-            return recognizeLetter(dignity)+13;
+            return recognizeLetter(dignity) + 13;
         case '♥':
-            return recognizeLetter(dignity)+2*13;
+            return recognizeLetter(dignity) + 2 * 13;
         case '♠':
-            return recognizeLetter(dignity)+3*13;
+            return recognizeLetter(dignity) + 3 * 13;
     }
 
     function recognizeLetter(letter) {
-        switch(letter){
+        switch (letter) {
             case 'J':
                 return 10;
             case 'Q':
@@ -337,7 +336,7 @@ function getCardId(value) {
             case 'A':
                 return 0;
             default:
-                return parseInt(letter)-1;
+                return parseInt(letter) - 1;
         }
     }
 }
