@@ -119,10 +119,10 @@ describe('03-date-tasks', function() {
                 expected: Math.PI/2
             }, {
                 date:     Date.UTC(2016,3,5,14,20),
-                expected: 0.8726646259971648
+                expected: 0.8726646259971647
             }, {
                 date:     Date.UTC(2016,3,5,23,55),
-                expected: 0.4799655442984406
+                expected: 0.47996554429844057
             }
         ].forEach(data => {
             assert.equal(
