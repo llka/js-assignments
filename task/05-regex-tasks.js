@@ -31,7 +31,9 @@
  * @return {RegExp}
  */
 function getRegexForGuid() {
-   throw new Error('Not implemented');
+    const X_REGEX = '[A-Fa-f0-9]';
+    return new RegExp(`{${X_REGEX}{8}-${X_REGEX}{4}-${X_REGEX}{4}-${X_REGEX}{4}-${X_REGEX}{12}}`);
+
 }
 
 
@@ -53,7 +55,7 @@ function getRegexForGuid() {
  *
  */
 function getRegexForPitSpot() {
-   throw new Error('Not implemented');
+   return new RegExp('[isw]');
 }
 
 
@@ -72,7 +74,7 @@ function getRegexForPitSpot() {
  * @return {RegExp}
  */
 function getRegexForIPv4() {
-   throw new Error('Not implemented');
+    throw new Error('Not implemented');
 }
 
 
